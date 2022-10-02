@@ -1,0 +1,15 @@
+install composer, pgadmin
+
+
+Add password argment when install postgresql add chocolatey
+
+
+notepad $PROFILE
+chcp 1252 > $null
+
+
+php --ini
+pakai notepad edit php.ini
+extension=php_fileinfo.dll
+uncomment
+extension=pdo_pgsql
