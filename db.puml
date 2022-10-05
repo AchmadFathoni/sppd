@@ -1,0 +1,73 @@
+@startuml db
+
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "Nomatif" as n {
+  *kegiatan: char(32)
+  --
+  *tujuan : char(64)
+  *berangkat : tanggal
+  *kembali : tanggal
+  *keterangan : char(64)
+  *status : Status_id <<FK>>
+  *ppk : Pegawai_NIP <<FK>>
+}
+
+entity "Pegawai" as p {
+  *NIP : char(18)
+  --
+  *nama : char(64)
+  *golongan : smallint
+}
+
+entity "Personil" as pe {
+  *id : serial <<generated>>
+  --
+  *nomatif : Nomatif_kegiatan <<FK>>
+  *pegawai: Pegawai_NIP <<FK>>
+}
+
+entity "RRB" as r {
+  *nomatif : Nomatif_kegiatan <<FK>>
+  --
+  *uraian : text
+  *keterangan : text
+  *ketua :
+}
+
+entity "status" as s {
+  *id : char(4)
+  --
+  *status : text
+}
+
+entity "sub_RAB" as kr {
+  *id : serial <<generated>>
+  --
+  *status : text
+}
+
+entity "RAB" as ra {
+  *nomatif : Nomatif_kegiatan <<FK>>
+  --
+  *tipe : sub_RAB_id <<FK>>
+  *keterangan
+  *jumlah_1 : smallint
+  *unit_1 : char(8)
+  *jumlah_2 : smallint
+  *unit_2 : char(8)
+  *harga :integer
+}
+
+pe }o..|| p
+pe }|..|| n
+n ||..|| r
+n ||..|| ra
+n }o..|| s
+ra }o..|| kr
+
+@enduml

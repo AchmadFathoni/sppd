@@ -1,12 +1,8 @@
 install composer, pgadmin
 
-
-Add password argment when install postgresql add chocolatey
-
-
+Set-ExecutionPolicy remoteSigned
 notepad $PROFILE
-chcp 1252 > $null
-
+chcp 1253 > $null
 
 php --ini
 pakai notepad edit php.ini
